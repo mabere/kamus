@@ -1,0 +1,75 @@
+<x-app-layout>
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 py-6">
+        <h1 class="text-2xl font-bold mb-4">Usulan Kata Baru</h1>
+        @if (session('success'))
+        <div class="bg-green-100 p-4 rounded mb-4">{{ session('success') }}</div>
+        @endif
+        <form method="POST" action="{{ route('usulan_kata.store') }}" enctype="multipart/form-data">
+            @csrf
+            <div class="mb-4">
+                <label for="bahasa_id" class="block text-sm font-medium">Bahasa</label>
+                <select name="bahasa_id" class="mt-1 block w-full rounded-md border-gray-300">
+                    @foreach ($bahasa as $item)
+                    <option value="{{ $item->id }}">{{ $item->nama_bahasa }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="mb-4">
+                <label for="kategori_id" class="block text-sm font-medium">Kategori</label>
+                <select name="kategori_id" class="mt-1 block w-full rounded-md border-gray-300">
+                    <option value="">- Pilih Kategori -</option>
+                    @foreach ($kategori as $item)
+                    <option value="{{ $item->id }}">{{ $item->nama_kategori }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="mb-4">
+                <label for="kata_daerah" class="block text-sm font-medium">Kata Daerah</label>
+                <input type="text" name="kata_daerah" class="mt-1 block w-full rounded-md border-gray-300" required>
+            </div>
+            <div class="mb-4">
+                <label for="kata_indonesia" class="block text-sm font-medium">Kata Indonesia</label>
+                <input type="text" name="kata_indonesia" class="mt-1 block w-full rounded-md border-gray-300" required>
+            </div>
+            <div class="mb-4">
+                <label for="kata_inggris" class="block text-sm font-medium">Kata Inggris</label>
+                <input type="text" name="kata_inggris" class="mt-1 block w-full rounded-md border-gray-300" required>
+            </div>
+            <div class="mb-4">
+                <label for="arti_daerah" class="block text-sm font-medium">Arti Daerah</label>
+                <textarea name="arti_daerah" class="mt-1 block w-full rounded-md border-gray-300"></textarea>
+            </div>
+            <div class="mb-4">
+                <label for="arti_indonesia" class="block text-sm font-medium">Arti Indonesia</label>
+                <textarea name="arti_indonesia" class="mt-1 block w-full rounded-md border-gray-300"></textarea>
+            </div>
+            <div class="mb-4">
+                <label for="arti_inggris" class="block text-sm font-medium">Arti Inggris</label>
+                <textarea name="arti_inggris" class="mt-1 block w-full rounded-md border-gray-300"></textarea>
+            </div>
+            <div class="mb-4">
+                <label for="contoh_kalimat_daerah" class="block text-sm font-medium">Contoh Kalimat Daerah</label>
+                <textarea name="contoh_kalimat_daerah" class="mt-1 block w-full rounded-md border-gray-300"></textarea>
+            </div>
+            <div class="mb-4">
+                <label for="contoh_kalimat_indonesia" class="block text-sm font-medium">Contoh Kalimat
+                    Indonesia</label>
+                <textarea name="contoh_kalimat_indonesia"
+                    class="mt-1 block w-full rounded-md border-gray-300"></textarea>
+            </div>
+            <div class="mb-4">
+                <label for="contoh_kalimat_inggris" class="block text-sm font-medium">Contoh Kalimat Inggris</label>
+                <textarea name="contoh_kalimat_inggris" class="mt-1 block w-full rounded-md border-gray-300"></textarea>
+            </div>
+            <div class="mb-4">
+                <label for="gambar" class="block text-sm font-medium">Gambar (opsional)</label>
+                <input type="file" name="gambar" class="mt-1 block w-full">
+            </div>
+            <div class="mb-4">
+                <label for="audio" class="block text-sm font-medium">Audio (opsional)</label>
+                <input type="file" name="audio" class="mt-1 block w-full">
+            </div>
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Kirim Usulan</button>
+        </form>
+    </div>
+</x-app-layout>
